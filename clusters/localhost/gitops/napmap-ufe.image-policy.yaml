@@ -1,0 +1,13 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: napmap-ufe
+  namespace: wac-hospital
+spec:
+  imageRepositoryRef:
+    name: napmap-ufe
+  filterTags:
+    pattern: "main.*"
+  policy:
+    alphabetical:
+      order: asc
