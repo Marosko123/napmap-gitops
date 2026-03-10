@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+images:
+  - name: bednarmaros341/napmap-ufe
+    newName: bednarmaros341/napmap-ufe # {"$imagepolicy": "wac-hospital:napmap-ufe:name"}
+    newTag: main # {"$imagepolicy": "wac-hospital:napmap-ufe:tag"}
+
+  - name: bednarmaros341/napmap-webapi
+    newName: bednarmaros341/napmap-webapi # {"$imagepolicy": "wac-hospital:napmap-webapi:name"}
+    newTag: main # {"$imagepolicy": "wac-hospital:napmap-webapi:tag"}

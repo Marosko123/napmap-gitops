@@ -1,0 +1,9 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: MicroFrontend
+metadata:
+  name: mb-napmap-ufe
+spec:
+  frontendClass: md-shell
+  service:
+    name: mb-napmap-ufe
+  modulePath: build/napmap-ufe.esm.js

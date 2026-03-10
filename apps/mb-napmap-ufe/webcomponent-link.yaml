@@ -1,0 +1,25 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: WebComponent
+metadata:
+  name: mb-napmap-ufe-link
+spec:
+  microFrontend: polyfea-md-shell
+  element: polyfea-md-app
+  attributes:
+    - name: headline
+      value: NAPMap Stanice
+    - name: short-headline
+      value: NAPMap
+    - name: supporting-text
+      value: |
+        Správa verejných staníc alternatívnych palív
+    - name: material-icon
+      value: ev_station
+    - name: href
+      value: ./mb-napmap
+  priority: 10
+  displayRules:
+    - anyOf:
+        - context-name: applications
+        - context-name: rail-content
+        - context-name: drawer-content

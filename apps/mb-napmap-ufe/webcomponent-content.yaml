@@ -1,0 +1,16 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: WebComponent
+metadata:
+  name: mb-napmap-ufe-content
+spec:
+  microFrontend: mb-napmap-ufe
+  element: mb-napmap-app
+  attributes:
+    - name: api-base
+      value: http://mb-napmap-webapi/api
+    - name: base-path
+      value: ./mb-napmap/
+  displayRules:
+    - allOf:
+        - context-name: main-content
+        - path: "^(\\.?/)?mb-napmap(/.*)?$"
