@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &PODNAME mongodb
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        pod: *PODNAME
+  template:
+    metadata:
+      labels:
+        pod: *PODNAME
+    spec:
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: mongo-pvc
+      containers:
+      - name: *PODNAME
+        image: mongo:latest
+        imagePullPolicy: Always
+        ports:
+        - name: mongodb-port
+          containerPort: 27017
+        volumeMounts:
+        - name: db-data
+          mountPath: /data/db
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "0.1"
+          limits:
+            memory: "4Gi"
+            cpu: "0.5"
