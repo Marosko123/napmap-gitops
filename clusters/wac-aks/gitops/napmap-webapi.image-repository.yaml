@@ -1,0 +1,8 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: napmap-webapi
+  namespace: wac-hospital
+spec:
+  image: bednarmaros341/napmap-webapi
+  interval: 1m0s

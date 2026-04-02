@@ -1,13 +1,13 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
-  name: napmap-gitops
+  name: mb-napmap-gitops
   namespace: wac-hospital
 spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: gitops-repo
+    name: mb-gitops-repo
   git:
     checkout:
       ref:

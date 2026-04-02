@@ -10,4 +10,6 @@ resources:
     - git-repository.yaml
     - napmap-ufe.image-repository.yaml
     - napmap-ufe.image-policy.yaml
+    - napmap-webapi.image-repository.yaml
+    - napmap-webapi.image-policy.yaml
     - image-update-automation.yaml
