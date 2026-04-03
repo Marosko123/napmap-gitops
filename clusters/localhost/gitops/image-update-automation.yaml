@@ -7,7 +7,7 @@ spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: mb-gitops-repo
+    name: mb-napmap-gitops-repo
   git:
     checkout:
       ref:

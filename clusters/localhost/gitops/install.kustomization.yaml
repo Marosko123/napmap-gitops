@@ -1,16 +1,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: mb-install
+  name: mb-napmap-install
   namespace: wac-hospital
 spec:
   wait: true
   force: true
   dependsOn:
-    - name: mb-prepare
+    - name: mb-napmap-prepare
   interval: 120s
   path: clusters/localhost/install
   prune: true
   sourceRef:
     kind: GitRepository
-    name: mb-gitops-repo
+    name: mb-napmap-gitops-repo

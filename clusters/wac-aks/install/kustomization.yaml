@@ -7,7 +7,6 @@ labels:
 resources:
   - ../../../apps/mb-napmap-ufe
   - ../../../apps/mb-napmap-webapi
-  - ../../../infrastructure/mongodb
 
 components:
   - ../../../components/version-developers
