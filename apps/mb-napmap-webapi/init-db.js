@@ -12,7 +12,8 @@ const retrySeconds = parseInt(process.env.RETRY_CONNECTION_SECONDS || "5") || 5;
 let connection;
 while(true) {
     try {
-        connection = Mongo(`mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}`);
+        let uri = mongoUser ? `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}` : `mongodb://${mongoHost}:${mongoPort}`;
+        connection = Mongo(uri);
         break;
     } catch (exception) {
         print(`Cannot connect to mongoDB: ${exception}`);
