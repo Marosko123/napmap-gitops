@@ -30,9 +30,15 @@ spec:
           - name: NAPMAP_API_MONGODB_PORT
             value: "27017"
           - name: NAPMAP_API_MONGODB_USERNAME
-            value: ""
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-auth
+                key: username
           - name: NAPMAP_API_MONGODB_PASSWORD
-            value: ""
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-auth
+                key: password
           - name: NAPMAP_API_MONGODB_DATABASE
             value: mb-napmap
           - name: NAPMAP_API_MONGODB_COLLECTION
@@ -63,9 +69,15 @@ spec:
           - name: NAPMAP_API_MONGODB_PORT
             value: "27017"
           - name: NAPMAP_API_MONGODB_USERNAME
-            value: ""
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-auth
+                key: username
           - name: NAPMAP_API_MONGODB_PASSWORD
-            value: ""
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-auth
+                key: password
           - name: NAPMAP_API_MONGODB_DATABASE
             value: mb-napmap
           - name: NAPMAP_API_MONGODB_COLLECTION
