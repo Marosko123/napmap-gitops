@@ -7,7 +7,7 @@ spec:
   element: mb-napmap-app
   attributes:
     - name: api-base
-      value: http://mb-napmap-webapi/api
+      value: /mb-napmap-api
     - name: base-path
       value: ./mb-napmap/
   displayRules:
