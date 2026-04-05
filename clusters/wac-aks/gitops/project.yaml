@@ -1,0 +1,11 @@
+apiVersion: wac-fiit.github.io/v1alpha1
+kind: Project
+metadata:
+  name: mb-napmap
+spec:
+  title: "NAPMap Stanice"
+  description: "Registrácia a správa verejných staníc alternatívnych palív (EV/H2)"
+  authors: "Maros Bednar"
+  frontendRepoUrl: "https://github.com/Marosko123/napmap-ufe"
+  backendRepoUrl: "https://github.com/Marosko123/napmap-webapi"
+  gitopsRepoUrl: "https://github.com/Marosko123/napmap-gitops"

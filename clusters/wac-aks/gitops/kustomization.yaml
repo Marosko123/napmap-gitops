@@ -13,3 +13,4 @@ resources:
     - napmap-webapi.image-repository.yaml
     - napmap-webapi.image-policy.yaml
     - image-update-automation.yaml
+    - project.yaml

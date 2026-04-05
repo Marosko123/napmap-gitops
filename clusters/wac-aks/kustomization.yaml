@@ -4,6 +4,7 @@ namespace: wac-hospital
 labels:
   - pairs:
       app.kubernetes.io/part-of: wac-hospital
+      wac-fiit.github.io/project: mb-napmap
 resources:
   - install
   - gitops
