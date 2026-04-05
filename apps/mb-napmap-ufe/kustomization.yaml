@@ -9,3 +9,4 @@ resources:
 labels:
   - pairs:
       app.kubernetes.io/component: mb-napmap-ufe
+      wac-fiit.github.io/component: frontend

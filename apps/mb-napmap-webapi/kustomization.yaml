@@ -13,3 +13,4 @@ configMapGenerator:
 labels:
   - pairs:
       app.kubernetes.io/component: mb-napmap-webapi
+      wac-fiit.github.io/component: backend
