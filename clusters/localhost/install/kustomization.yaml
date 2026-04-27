@@ -8,5 +8,9 @@ resources:
   - ../../../apps/mb-napmap-ufe
   - ../../../apps/mb-napmap-webapi
 
+patches:
+  - path: patches/napmap-webapi.service.yaml
+
 components:
   - ../../../components/version-developers
+  - https://github.com/Marosko123/napmap-webapi//deployments/kustomize/components/mongodb
