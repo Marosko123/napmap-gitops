@@ -7,4 +7,4 @@ images:
 
   - name: bednarmaros341/napmap-webapi
     newName: bednarmaros341/napmap-webapi
-    newTag: 1.0.0
+    newTag: 1.0.1
