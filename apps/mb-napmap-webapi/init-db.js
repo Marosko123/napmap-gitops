@@ -22,23 +22,16 @@ while(true) {
     }
 }
 
-const databases = connection.getDBNames()
-if (databases.includes(database)) {
-    const dbInstance = connection.getDB(database)
-    const collections = dbInstance.getCollectionNames()
-    if (collections.includes(collection)) {
-        print(`Collection '${collection}' already exists in database '${database}'`)
-        process.exit(0);
-    }
+const db = connection.getDB(database)
+if (!db.getCollectionNames().includes(collection)) {
+    db.createCollection(collection)
 }
 
-const db = connection.getDB(database)
-db.createCollection(collection)
 db[collection].createIndex({ "id": 1 })
 db[collection].createIndex({ "city": 1 })
 db[collection].createIndex({ "status": 1 })
 
-let result = db[collection].insertMany([
+const seed = [
     {
         "id": "st-001", "name": "NAPMap Bratislava Nivy", "stationType": "CHARGING",
         "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
@@ -61,6 +54,41 @@ let result = db[collection].insertMany([
         "connectors": ["CCS2", "Type2"], "services": ["WC", "Food"], "status": "ACTIVE"
     },
     {
+        "id": "st-004", "name": "NAPMap Nitra Zobor", "stationType": "CHARGING",
+        "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
+        "address": "Štefánikova 8", "city": "Nitra", "country": "SK",
+        "lat": 48.3069, "lng": 18.0869, "openingHours": "06:00-20:00", "maxPowerKw": 75,
+        "connectors": ["CCS2", "Type2"], "services": ["Parking"], "status": "ACTIVE"
+    },
+    {
+        "id": "st-005", "name": "NAPMap Žilina Station", "stationType": "CHARGING",
+        "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
+        "address": "Vysokoškolákov 52", "city": "Žilina", "country": "SK",
+        "lat": 49.2194, "lng": 18.7408, "openingHours": "24/7", "maxPowerKw": 150,
+        "connectors": ["CCS2", "Type2", "CHAdeMO"], "services": ["WC", "Food", "Parking"], "status": "ACTIVE"
+    },
+    {
+        "id": "st-006", "name": "NAPMap Banská Bystrica", "stationType": "CHARGING",
+        "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
+        "address": "Námestie SNP 12", "city": "Banská Bystrica", "country": "SK",
+        "lat": 48.7395, "lng": 19.1533, "openingHours": "24/7", "maxPowerKw": 100,
+        "connectors": ["CCS2", "Type2"], "services": ["WC"], "status": "ACTIVE"
+    },
+    {
+        "id": "st-007", "name": "NAPMap Prešov Hub", "stationType": "CHARGING",
+        "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
+        "address": "Masarykova 20", "city": "Prešov", "country": "SK",
+        "lat": 49.0018, "lng": 21.2395, "openingHours": "06:00-22:00", "maxPowerKw": 75,
+        "connectors": ["CCS2", "Type2"], "services": ["Parking"], "status": "ACTIVE"
+    },
+    {
+        "id": "st-008", "name": "NAPMap Košice Terminal", "stationType": "CHARGING",
+        "fuels": ["ELECTRIC"], "operatorName": "NAPMap Energy s.r.o.",
+        "address": "Staničné námestie 1", "city": "Košice", "country": "SK",
+        "lat": 48.7164, "lng": 21.2611, "openingHours": "24/7", "maxPowerKw": 150,
+        "connectors": ["CCS2", "Type2", "CHAdeMO"], "services": ["WC", "Food", "Parking"], "status": "ACTIVE"
+    },
+    {
         "id": "st-009", "name": "NAPMap Senec H2 Point", "stationType": "REFUELING",
         "fuels": ["HYDROGEN"], "operatorName": "H2 Slovakia a.s.",
         "address": "Diaľničná cesta 12", "city": "Senec", "country": "SK",
@@ -74,11 +102,17 @@ let result = db[collection].insertMany([
         "lat": 48.5747, "lng": 19.1369, "openingHours": "24/7", "maxPowerKw": null,
         "connectors": [], "services": ["WC", "Parking"], "status": "ACTIVE"
     }
-]);
+]
 
-if (result.writeError) {
-    console.error(result)
-    print(`Error when writing the data: ${result.errmsg}`)
+let inserted = 0
+for (const station of seed) {
+    const res = db[collection].updateOne(
+        { id: station.id },
+        { $setOnInsert: station },
+        { upsert: true }
+    )
+    if (res.upsertedCount > 0) inserted += 1
 }
+print(`Seed completed: ${inserted}/${seed.length} new stations inserted`)
 
 process.exit(0);
