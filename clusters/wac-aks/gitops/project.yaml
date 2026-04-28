@@ -3,7 +3,7 @@ kind: Project
 metadata:
   name: mb-napmap
 spec:
-  title: "NAPMap Stanice"
+  title: "NAPMap - Stanice alternatívnych palív"
   description: "Registrácia a správa verejných staníc alternatívnych palív (EV/H2)"
   authors: "Maros Bednar"
   azureLink: "https://mb-napmap-exhrbke5bvhyg9ay.germanywestcentral-01.azurewebsites.net/"
